@@ -19,6 +19,5 @@ void MainWindow::on_pushButton_clicked()
 {
     QQuickWidget *view = new QQuickWidget;
     view->setSource(QUrl::fromLocalFile("/Users/destec2/Documents/QmlViewer/QmlViewer/imports/blueRectangle.qml"));
-    view->show();
-}
+    setCentralWidget(view);
 

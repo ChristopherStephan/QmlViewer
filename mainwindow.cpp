@@ -24,8 +24,6 @@ MainWindow::MainWindow(QWidget *parent)
         connect(button, &QPushButton::clicked, this, &MainWindow::on_pushButton_clicked);
         std::cout << file.path() << std::endl;
     }
-
-
 }
 
 MainWindow::~MainWindow()

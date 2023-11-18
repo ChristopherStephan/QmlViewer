@@ -14,10 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     std::string path = "/Users/destec2/Documents/QmlViewer/QmlViewer/imports/";
-    std::vector<std::string> qmlFilePaths;
 
     for (const auto & file : fs::directory_iterator(path)){
-        qmlFilePaths.push_back(file.path());
         QString filename = QString::fromStdString(file.path().filename().string());
         QPushButton *button = new QPushButton(filename, this);
         ui->horizontalLayout->addWidget(button);

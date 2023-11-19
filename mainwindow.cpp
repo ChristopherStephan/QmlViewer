@@ -2,10 +2,12 @@
 #include "./ui_mainwindow.h"
 #include "QtWidgets/qpushbutton.h"
 #include <QQuickWidget>
+#include <QPushButton>
 #include <string>
 #include <iostream>
 #include <filesystem>
 namespace fs = std::filesystem;
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,7 +26,6 @@ MainWindow::MainWindow(QWidget *parent)
 
         connect(button, &QPushButton::clicked, this, &MainWindow::on_pushButton_clicked);
 
-        std::cout << file.path() << std::endl;
         ui->horizontalLayout->addWidget(button);
     }
 }
@@ -38,10 +39,22 @@ void MainWindow::on_pushButton_clicked()
 {
     QPushButton* button = qobject_cast<QPushButton*>(sender());
     if(button) {
+        QVBoxLayout *layout = new QVBoxLayout(this);
+        QQuickWidget *container = new QQuickWidget;
+
+        container->setLayout(layout);
+
+        QPushButton *backButton = new QPushButton("Back", this);
+        layout->addWidget(backButton);
+
+        QQuickWidget *qmlWidget = new QQuickWidget;
+        layout->addWidget(qmlWidget);
+
         QString path = button->property("path").toString();
-        QQuickWidget *view = new QQuickWidget;
-        view->setSource(QUrl::fromLocalFile(path));
-        setCentralWidget(view);
+        qmlWidget->setSource(QUrl::fromLocalFile(path));
+
+
+        setCentralWidget(container);
     }
 }
 

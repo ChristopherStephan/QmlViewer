@@ -17,6 +17,7 @@ public:
 
 private slots:
     void on_openQml();
+    void on_closeWindow();
 
 private:
     Ui::MainWindow *ui;

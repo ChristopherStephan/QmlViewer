@@ -44,7 +44,8 @@ void MainWindow::on_openQml()
 
         container->setLayout(layout);
 
-        QPushButton *backButton = new QPushButton("Back", this);
+        QPushButton *backButton = new QPushButton("Close", this);
+        connect(backButton, &QPushButton::clicked, this, &MainWindow::on_closeWindow);
         layout->addWidget(backButton);
 
         QQuickWidget *qmlWidget = new QQuickWidget;
@@ -55,5 +56,10 @@ void MainWindow::on_openQml()
 
         setCentralWidget(container);
     }
+}
+
+void MainWindow::on_closeWindow()
+{
+    close();
 }
 

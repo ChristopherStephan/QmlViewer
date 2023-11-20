@@ -16,7 +16,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_openQml();
 
 private:
     Ui::MainWindow *ui;

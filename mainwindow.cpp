@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
         QString path = QString::fromStdString(file.path().string());
         button->setProperty("path", QVariant(path));
 
-        connect(button, &QPushButton::clicked, this, &MainWindow::on_pushButton_clicked);
+        QObject::connect(button, &QPushButton::clicked, this, &MainWindow::on_openQml);
 
         ui->horizontalLayout->addWidget(button);
     }
@@ -35,7 +35,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_openQml()
 {
     QPushButton* button = qobject_cast<QPushButton*>(sender());
     if(button) {
@@ -52,7 +52,6 @@ void MainWindow::on_pushButton_clicked()
 
         QString path = button->property("path").toString();
         qmlWidget->setSource(QUrl::fromLocalFile(path));
-
 
         setCentralWidget(container);
     }
